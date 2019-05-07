@@ -1,0 +1,46 @@
+{
+  "name": "@ulangi/assert",
+  "version": "1.4.0",
+  "description": "assert",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "scripts": {
+    "lint": "eslint --ext .ts src/",
+    "lint-fix": "eslint --fix --ext .ts src/",
+    "test": "npx jest",
+    "clean": "rm -rf ./dist",
+    "compile": "tsc -noUnusedLocals --noUnusedParameters -p ./",
+    "build": "npm run sort-imports && npm run prettify && npm run lint-fix && npm run clean && npm run compile",
+    "sort-imports": "import-sort --write \"src/**/*.ts\"",
+    "prettify": "prettier --write \"src/**/*.ts\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minhloi/assert.git"
+  },
+  "author": "Minh Loi",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/minhloi/assert/issues"
+  },
+  "homepage": "https://github.com/minhloi/assert#readme",
+  "dependencies": {
+    "joi": "^14.3.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.12",
+    "@types/joi": "^14.3.3",
+    "@typescript-eslint/eslint-plugin": "^1.7.0",
+    "@typescript-eslint/parser": "^1.7.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-jest": "^22.5.1",
+    "import-sort-cli": "^6.0.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.17.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.4.5"
+  }
+}
