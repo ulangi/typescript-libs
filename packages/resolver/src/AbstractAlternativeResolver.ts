@@ -10,14 +10,7 @@ export abstract class AbstractAlternativeResolver<T> implements Resolver<T> {
     return this.rules;
   }
 
-  public resolve(data: any, stripUnknown: boolean): T {
-    return Joi.attempt(
-      data,
-      this.rules.options({ stripUnknown, presence: "required" })
-    );
-  }
-
-  public canResolve(data: any, stripUnknown: boolean): boolean {
+  public isValid(data: any, stripUnknown: boolean): boolean {
     const { error } = Joi.validate(data, this.rules, {
       stripUnknown,
       presence: "required"
@@ -25,7 +18,15 @@ export abstract class AbstractAlternativeResolver<T> implements Resolver<T> {
     return error !== null;
   }
 
-  public isValid(data: any, stripUnknown: boolean): data is T {
+  public isPartialValid(data: any, stripUnknown: boolean): boolean {
+    const { error } = Joi.validate(data, this.rules, {
+      stripUnknown,
+      presence: "optional"
+    });
+    return error !== null;
+  }
+
+  public isExactValid(data: any, stripUnknown: boolean): data is T {
     const { error } = Joi.validate(data, this.rules, {
       stripUnknown,
       presence: "required",
@@ -34,22 +35,7 @@ export abstract class AbstractAlternativeResolver<T> implements Resolver<T> {
     return error !== null;
   }
 
-  public resolvePartial(data: any, stripUnknown: boolean): DeepPartial<T> {
-    return Joi.attempt(
-      data,
-      this.rules.options({ stripUnknown, presence: "optional" })
-    );
-  }
-
-  public canResolvePartial(data: any, stripUnknown: boolean): boolean {
-    const { error } = Joi.validate(data, this.rules, {
-      stripUnknown,
-      presence: "optional"
-    });
-    return error !== null;
-  }
-
-  public isValidPartial(
+  public isPartialExactValid(
     data: any,
     stripUnknown: boolean
   ): data is DeepPartial<T> {
@@ -59,6 +45,20 @@ export abstract class AbstractAlternativeResolver<T> implements Resolver<T> {
       convert: false
     });
     return error !== null;
+  }
+
+  public resolve(data: any, stripUnknown: boolean): T {
+    return Joi.attempt(
+      data,
+      this.rules.options({ stripUnknown, presence: "required" })
+    );
+  }
+
+  public resolvePartial(data: any, stripUnknown: boolean): DeepPartial<T> {
+    return Joi.attempt(
+      data,
+      this.rules.options({ stripUnknown, presence: "optional" })
+    );
   }
 
   public resolveArray(data: any[], stripUnknown: boolean): ReadonlyArray<T> {
@@ -79,6 +79,16 @@ export abstract class AbstractAlternativeResolver<T> implements Resolver<T> {
       Joi.array().items(
         this.rules.options({ stripUnknown, presence: "optional" })
       )
+    );
+  }
+
+  public validate(
+    data: any,
+    stripUnknown: boolean
+  ): { error: Joi.ValidationError; value: T } {
+    return Joi.validate(
+      data,
+      this.rules.options({ stripUnknown, presence: "required" })
     );
   }
 }
