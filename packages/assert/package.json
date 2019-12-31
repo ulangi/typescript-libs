@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "scripts": {
     "lint": "eslint --ext .ts src/",
@@ -22,7 +22,7 @@
     "url": "git+https://github.com/minhloi/assert.git"
   },
   "author": "Minh Loi",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/minhloi/assert/issues"
   },

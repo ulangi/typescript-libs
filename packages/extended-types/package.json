@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,7 +18,7 @@
     "prettify": "prettier --write \"src/**/*.ts\""
   },
   "author": "Minh Loi",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.7.0",
     "eslint": "^5.16.0",
