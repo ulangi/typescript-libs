@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/minhloi/typescript-libs/compare/@ulangi/resolver@2.0.1...@ulangi/resolver@2.0.2) (2020-02-02)
+
+
+### Bug Fixes
+
+* strip unknown should remove invalid array items ([968542a](https://github.com/minhloi/typescript-libs/commit/968542a831f28689be96733b49c0c0602ce2938d))
+
+
+
+
+
 ## [2.0.1](https://github.com/minhloi/typescript-libs/compare/@ulangi/resolver@2.0.0...@ulangi/resolver@2.0.1) (2019-12-31)
 
 
