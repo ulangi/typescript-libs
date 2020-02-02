@@ -88,15 +88,15 @@ export abstract class AbstractAlternativeResolver<T> implements Resolver<T> {
   public resolveArray(data: any[], stripUnknown: boolean): ReadonlyArray<T> {
     return Joi.attempt(
       data,
-      Joi.array().items(
-        this.rules.options({
+      Joi.array()
+        .items(this.rules)
+        .options({
           stripUnknown: {
             arrays: stripUnknown,
             objects: stripUnknown
           },
           presence: "required"
         })
-      )
     );
   }
 
@@ -106,15 +106,15 @@ export abstract class AbstractAlternativeResolver<T> implements Resolver<T> {
   ): ReadonlyArray<DeepPartial<T>> {
     return Joi.attempt(
       data,
-      Joi.array().items(
-        this.rules.options({
+      Joi.array()
+        .items(this.rules)
+        .options({
           stripUnknown: {
             arrays: stripUnknown,
             objects: stripUnknown
           },
           presence: "optional"
         })
-      )
     );
   }
 
